@@ -2,26 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg-void: #040406;
+    --bg-surface: #0A0A10;
+    --bg-card: #0F0F1A;
+    --bg-border: #1A1A2E;
+
+    --accent-cyan: #00F5FF;
+    --accent-violet: #7B2FFF;
+    --accent-magenta: #FF2D78;
+    --accent-gold: #FFD700;
+
+    --text-primary: #FFFFFF;
+    --text-secondary: #A8A8B8;
+    --text-disabled: #4A4A5A;
   }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-primary);
+  background: var(--bg-void);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/5 border border-white/10 backdrop-blur-[20px] shadow-glass rounded-2xl;
+  }
+  
+  .glass-panel-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-white/20 hover:bg-white/10;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-hero;
   }
 }

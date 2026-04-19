@@ -1,0 +1,103 @@
+{
+  "Navigation": {
+    "Home": "Home",
+    "About": "About",
+    "Services": "Services",
+    "Portfolio": "Portfolio",
+    "Team": "Team",
+    "Contact": "Contact Us"
+  },
+  "Home": {
+    "Hero": {
+      "titlePart1": "We Don't Build Websites.",
+      "titlePart2": "We Engineer Digital Empires.",
+      "subtitle": "Your brand deserves dominance. We merge cutting-edge technology with visionary strategy to build undisputed market leaders.",
+      "ctaStart": "Start Your Transformation",
+      "ctaExplore": "Explore Our Work",
+      "trustBar": "Trusted by 120+ brands across Egypt, UAE, Saudi Arabia & beyond."
+    }
+  },
+  "About": {
+    "title": "Our Story",
+    "subtitle": "Elevating Brands through Premium Engineering",
+    "missionTitle": "The Mission",
+    "missionText": "We believe digital presence should not just exist—it should dominate. Our mission is to transform ambitious brands into market leaders through relentless innovation and premium aesthetics.",
+    "visionTitle": "The Vision",
+    "visionText": "To redefine global standards in web and marketing technology, turning ITspeedlight into the ultimate gateway for luxury brand scaling.",
+    "whyChooseUs": "Why Partner With Us",
+    "why1": "Uncompromised Quality",
+    "why1Text": "We do not use templates. We build bespoke digital masterpieces.",
+    "why2": "Conversion Engineered",
+    "why2Text": "Every interaction is carefully calculated to capture leads and multiply ROI.",
+    "why3": "Next-Gen Tech",
+    "why3Text": "Utilizing advanced framerops, server-components, and 3D web technologies.",
+    "cta": "Ready to scale your business?"
+  },
+  "Services": {
+    "title": "Elite Services",
+    "subtitle": "Everything you need to dominate the digital landscape.",
+    "items": {
+      "web": {
+        "title": "Enterprise Web Development",
+        "desc": "High-performance, ultra-secure scalable platforms built with cutting edge technologies."
+      },
+      "branding": {
+        "title": "Luxury Branding",
+        "desc": "Crafting unforgettable visual identities that command respect and loyalty."
+      },
+      "social": {
+        "title": "Social Media Domination",
+        "desc": "Data-driven organic and viral strategies to capture market attention."
+      },
+      "seo": {
+        "title": "Technical SEO",
+        "desc": "Deeply integrated organic search engineering to monopolize Google rankings."
+      },
+      "marketing": {
+        "title": "Performance Marketing",
+        "desc": "Precision ad-buying across Meta, Google, and TikTok to scale revenue instantly."
+      },
+      "growth": {
+        "title": "Business Growth Strategy",
+        "desc": "High-level consulting to optimize your entire funnel and maximize LTV."
+      }
+    }
+  },
+  "Team": {
+    "title": "The Architects",
+    "subtitle": "Meet the visionary engineers behind ITspeedlight.",
+    "culture": "Our Culture",
+    "cultureText": "We operate exclusively at the bleeding edge. A collective of obsessives, perfectionists, and disruptors.",
+    "members": {
+      "ceo": {
+        "name": "Founder",
+        "role": "Chief Executive Officer"
+      },
+      "cto": {
+        "name": "Tech Lead",
+        "role": "Head of Engineering"
+      },
+      "cmo": {
+        "name": "Growth Lead",
+        "role": "Chief Marketing Officer"
+      }
+    }
+  },
+  "Contact": {
+    "title": "Start The Transformation",
+    "subtitle": "Your digital empire awaits. Connect with our growth team today.",
+    "form": {
+      "name": "Full Name",
+      "email": "Business Email",
+      "message": "Project Details & Goals",
+      "submit": "Initialize Contact",
+      "success": "Message received. Our team will contact you shortly."
+    },
+    "info": {
+      "addressTitle": "Headquarters",
+      "address": "Cairo, Egypt",
+      "emailTitle": "Direct Email",
+      "phoneTitle": "Global Hotline"
+    }
+  }
+}
