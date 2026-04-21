@@ -21,18 +21,20 @@ function SceneContent() {
         penumbra={1}
         color="#ffffff"
       />
-      <pointLight position={[-10, -10, -10]} intensity={1.5} color="#3d5afe" />
-      <pointLight position={[10, 10, 10]} intensity={1} color="#22d3ee" />
+      {/* Enhanced custom lighting to match ShaderGradient colors */}
+      <pointLight position={[-10, -10, -10]} intensity={2} color="#4d279b" />
+      <pointLight position={[10, 10, 10]} intensity={2} color="#a13085" />
 
-      <group position={[0, 0, 0]}>
+      <group position={[0, 0, 0]} scale={0.7}>
         <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
           <MorphingSphere />
         </Float>
-        <ParticleField count={1200} color="#3d5afe" />
+        {/* Restored to a smaller, cleaner ambient flow */}
+        <ParticleField count={600} color="#e056fd" />
       </group>
 
       <Environment preset="night" />
-      <fog attach="fog" args={["#000000", 8, 30]} />
+      {/* Fog removed to ensure Canvas is transparent over the ShaderGradient */}
     </>
   );
 }

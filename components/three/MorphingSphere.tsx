@@ -37,9 +37,9 @@ export default function MorphingSphere() {
           backside
           samples={4}
           thickness={1.5}
-          chromaticAberration={0.06}
-          anisotropy={0.3}
-          distortion={0.5}
+          chromaticAberration={0.15}
+          anisotropy={0.5}
+          distortion={0.6}
           distortionScale={0.5}
           temporalDistortion={0.1}
           color="#ffffff"
@@ -52,12 +52,12 @@ export default function MorphingSphere() {
       <mesh ref={innerRef}>
         <sphereGeometry args={[1.2, 32, 32]} />
         <meshStandardMaterial
-          color="#3d5afe"
-          emissive="#22d3ee"
-          emissiveIntensity={2}
+          color="#a13085"
+          emissive="#ff00ff"
+          emissiveIntensity={2.5}
           wireframe
           transparent
-          opacity={0.4}
+          opacity={0.6}
         />
       </mesh>
     </group>
