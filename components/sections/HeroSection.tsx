@@ -151,10 +151,10 @@ export default function HeroSection() {
 
       {/* Cinematic Movie Poster Layout: Text pinned to bottom-left */}
       <div className="absolute bottom-8 left-8 md:bottom-16 md:left-16 lg:bottom-24 lg:left-24 z-[10] flex flex-col items-start text-left">
-        <div className="mb-4 flex items-center gap-3" ref={trustRef}>
-          <div className="w-8 h-[2px] bg-accent-blue shadow-[0_0_10px_rgba(59,130,246,0.3)]" />
-          <span className="text-white font-sans text-[9px] font-bold tracking-widest leading-none">
-            {t("trustBar")}
+        <div className="mb-6 flex items-center gap-4" ref={trustRef}>
+          <div className="w-6 h-[1px] bg-accent-cyan shadow-[0_0_15px_rgba(34,211,238,0.5)]" />
+          <span className="text-accent-cyan font-mono text-[8px] font-normal tracking-[0.3em] uppercase">
+            {t("trustBar")} // 2025.EDITION
           </span>
         </div>
 
@@ -189,10 +189,23 @@ export default function HeroSection() {
             <div className="absolute inset-0 bg-accent-blue translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
           </button>
 
-          <button className="px-7 py-3 border border-white/30 rounded-full font-sans font-black text-[9px] uppercase tracking-widest text-white hover:bg-white/5 transition-all">
+          <button className="px-7 py-3 backdrop-blur-md bg-white/5 border border-white/10 rounded-full font-mono font-bold text-[9px] uppercase tracking-widest text-white hover:bg-white/10 transition-all shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
             {t("ctaExplore")}
           </button>
         </div>
+      </div>
+
+      {/* Trendy Brutalist Metadata Block */}
+      <div className="absolute bottom-8 right-8 md:bottom-16 md:right-16 lg:bottom-24 lg:right-24 z-[10] hidden md:flex flex-col items-end text-right gap-1.5 opacity-60">
+        <span className="font-mono text-[8px] text-accent-cyan tracking-[0.4em] uppercase">SYSTEM.ONLINE</span>
+        <span className="font-mono text-[8px] text-white/50 tracking-[0.2em]">[ LAT. 35.6895° N // LNG. 139.6917° E ]</span>
+        <span className="font-mono text-[8px] text-white/50 tracking-[0.2em]">CORE_TEMP: 0.04K // V_2.0.4</span>
+      </div>
+
+      {/* Vertical Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[10] flex flex-col items-center gap-4 opacity-70">
+        <span className="font-mono text-[7px] text-white/60 tracking-[0.5em] uppercase" style={{ writingMode: 'vertical-rl' }}>SCROLL</span>
+        <div className="w-[1px] h-16 bg-gradient-to-b from-white/30 to-transparent" />
       </div>
     </section>
   );
