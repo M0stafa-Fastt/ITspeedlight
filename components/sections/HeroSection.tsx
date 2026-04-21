@@ -95,7 +95,6 @@ export default function HeroSection() {
       });
 
       // Removed mouse movement behavior based on user request
-      
     }, sectionRef);
 
     return () => ctx.revert();
@@ -138,13 +137,6 @@ export default function HeroSection() {
 
       {/* Cinematic Movie Poster Layout: Text pinned to bottom-left */}
       <div className="absolute bottom-8 left-8 md:bottom-16 md:left-16 lg:bottom-24 lg:left-24 z-[10] flex flex-col items-start text-left">
-        <div className="mb-6 flex items-center gap-4" ref={trustRef}>
-          <div className="w-6 h-[1px] bg-accent-cyan shadow-[0_0_15px_rgba(34,211,238,0.5)]" />
-          <span className="text-accent-cyan font-mono text-[8px] font-normal tracking-[0.3em] uppercase">
-            {t("trustBar")} // 2025.EDITION
-          </span>
-        </div>
-
         <h1
           ref={title1Ref}
           className="font-orbitron font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white leading-[1.1] tracking-tight mb-1"
@@ -184,7 +176,12 @@ export default function HeroSection() {
 
       {/* Vertical Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[10] flex flex-col items-center gap-4 opacity-70">
-        <span className="font-mono text-[7px] text-white/60 tracking-[0.5em] uppercase" style={{ writingMode: 'vertical-rl' }}>SCROLL</span>
+        <span
+          className="font-mono text-[7px] text-white/60 tracking-[0.5em] uppercase"
+          style={{ writingMode: "vertical-rl" }}
+        >
+          SCROLL
+        </span>
         <div className="w-[1px] h-16 bg-gradient-to-b from-white/30 to-transparent" />
       </div>
     </section>
