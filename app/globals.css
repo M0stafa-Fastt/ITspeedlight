@@ -4,22 +4,34 @@
 
 @layer base {
   :root {
-    --bg-void: #040406;
-    --bg-surface: #0A0A10;
-    --bg-card: #0F0F1A;
-    --bg-border: #1A1A2E;
+  --bg-void: #000000;
+  --bg-surface: #050505;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-disabled: #475569;
+  
+  --accent-blue: #3d5afe;
+  --accent-indigo: #536dfe;
+  --accent-cyan: #22d3ee;
+  --accent-gold: #fbbf24;
+  
+  --gradient-base: linear-gradient(180deg, var(--bg-void) 0%, var(--bg-surface) 100%);
+  --gradient-accent: linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-cyan) 100%);
+  --gradient-cta: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-indigo) 100%);
+}
 
-    --accent-cyan: #00F5FF;
-    --accent-violet: #7B2FFF;
-    --accent-magenta: #FF2D78;
-    --accent-gold: #FFD700;
-
-    --text-primary: #FFFFFF;
-    --text-secondary: #A8A8B8;
-    --text-disabled: #4A4A5A;
+  html {
+    scroll-behavior: initial; /* Lenis handles smooth scroll */
   }
 }
 
+/* ---------- Hide default cursor when custom cursor is active ---------- */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+
+/* ---------- Base body ---------- */
 body {
   color: var(--text-primary);
   background: var(--bg-void);
@@ -28,16 +40,38 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-void);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(123, 47, 255, 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(123, 47, 255, 0.5);
+}
+
+/* ---------- Component classes ---------- */
 @layer components {
   .glass-panel {
     @apply bg-white/5 border border-white/10 backdrop-blur-[20px] shadow-glass rounded-2xl;
   }
-  
+
   .glass-panel-hover {
     @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-white/20 hover:bg-white/10;
   }
+
+  .section-badge {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono uppercase tracking-[0.2em]
+           bg-white/5 border border-white/10 text-accent-cyan mb-6;
+  }
 }
 
+/* ---------- Utility classes ---------- */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -45,4 +79,46 @@ body {
   .gradient-text {
     @apply text-transparent bg-clip-text bg-gradient-hero;
   }
+}
+
+/* ---------- Keyframe animations ---------- */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(3deg); }
+}
+
+@keyframes float-reverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(20px) rotate(-3deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-float-reverse { animation: float-reverse 7s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
+.animate-marquee { animation: marquee 30s linear infinite; }
+.animate-spin-slow { animation: spin-slow 20s linear infinite; }
+
+/* ---------- Word reveal wrapper ---------- */
+.word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.word-wrap .word-inner {
+  display: inline-block;
 }

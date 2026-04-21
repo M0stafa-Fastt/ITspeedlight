@@ -4,53 +4,58 @@ import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-export default function ParticleField({ count = 2000 }) {
-  const meshRef = useRef<THREE.InstancedMesh>(null!);
-  
-  const dummy = useMemo(() => new THREE.Object3D(), []);
-  
-  const particles = useMemo(() => {
-    const temp = [];
+export default function ParticleField({ count = 800, color = "#3d5afe" }) {
+  const pointsRef = useRef<THREE.Points>(null!);
+
+  const positions = useMemo(() => {
+    const pos = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      const radius = 5 + Math.random() * 15;
-      const theta = Math.random() * 2 * Math.PI;
-      const phi = Math.acos((Math.random() * 2) - 1);
+      // Swirling Galaxy / Vortex Mathematics
+      // Concentrate particles near the core and trail them outwards in a spiral
+      const radius = 1.5 + Math.random() * 6; 
+      const spinAngle = radius * 1.5; // Spiral tightness
+      const angle = Math.random() * Math.PI * 2;
+      
+      const x = Math.cos(angle + spinAngle) * radius;
+      const z = Math.sin(angle + spinAngle) * radius;
+      // Compressing the Y axis to create a disk-like swirl around the torus
+      const y = (Math.random() - 0.5) * 3 * (1 - radius / 10);
 
-      const x = radius * Math.sin(phi) * Math.cos(theta);
-      const y = radius * Math.sin(phi) * Math.sin(theta);
-      const z = radius * Math.cos(phi);
-
-      const speed = 0.001 + Math.random() * 0.002;
-      const offset = Math.random() * Math.PI * 2;
-      temp.push({ x, y, z, speed, offset, radius });
+      pos[i * 3] = x;
+      pos[i * 3 + 1] = y;
+      pos[i * 3 + 2] = z;
     }
-    return temp;
+    return pos;
   }, [count]);
 
   useFrame((state) => {
-    if (!meshRef.current) return;
-    
-    const time = state.clock.elapsedTime;
-    
-    particles.forEach((particle, i) => {
-      const angle = time * particle.speed + particle.offset;
-      dummy.position.set(
-        Math.cos(angle) * particle.radius,
-        particle.y + Math.sin(time + particle.offset) * 0.5,
-        Math.sin(angle) * particle.radius
-      );
-      dummy.updateMatrix();
-      meshRef.current.setMatrixAt(i, dummy.matrix);
-    });
-    
-    meshRef.current.instanceMatrix.needsUpdate = true;
-    meshRef.current.rotation.y = state.clock.elapsedTime * 0.05;
+    if (pointsRef.current) {
+      // Hypnotic orbital flow
+      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.2;
+      pointsRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.1) * 0.15;
+    }
   });
 
+
   return (
-    <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
-      <sphereGeometry args={[0.03, 8, 8]} />
-      <meshBasicMaterial color="#7B2FFF" transparent opacity={0.6} />
-    </instancedMesh>
+    <points ref={pointsRef}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          count={count}
+          array={positions}
+          itemSize={3}
+        />
+      </bufferGeometry>
+      <pointsMaterial
+        size={0.08}
+        color={color}
+        transparent
+        opacity={0.6}
+        sizeAttenuation
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+      />
+    </points>
   );
 }

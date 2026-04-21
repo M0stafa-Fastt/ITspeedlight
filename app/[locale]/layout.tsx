@@ -4,6 +4,9 @@ import "../globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import Navigation from "@/components/layout/Navigation";
+import Footer from "@/components/layout/Footer";
+import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
+import CustomCursor from "@/components/ui/CustomCursor";
 
 const orbitron = Orbitron({
   subsets: ["latin"],
@@ -37,12 +40,13 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "ITspeedlight — Premium Web & Marketing Solutions",
-  description: "ITspeedlight is a premium futuristic digital agency delivering world-class web development, branding, SEO, and marketing strategies.",
+  description:
+    "ITspeedlight is a premium futuristic digital agency delivering world-class web development, branding, SEO, and marketing strategies.",
 };
 
 export default async function RootLayout({
   children,
-  params: { locale }
+  params: { locale },
 }: Readonly<{
   children: React.ReactNode;
   params: { locale: string };
@@ -50,13 +54,17 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'} className="dark">
+    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} className="dark">
       <body
         className={`${orbitron.variable} ${syne.variable} ${dmSans.variable} ${cairo.variable} ${jetbrainsMono.variable} font-sans antialiased bg-bg-void text-text-primary selection:bg-accent-cyan/30 selection:text-accent-cyan`}
       >
         <NextIntlClientProvider messages={messages}>
-          <Navigation />
-          {children}
+          <SmoothScrollProvider>
+            <CustomCursor />
+            <Navigation />
+            {children}
+            <Footer />
+          </SmoothScrollProvider>
         </NextIntlClientProvider>
       </body>
     </html>

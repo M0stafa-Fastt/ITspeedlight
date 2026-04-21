@@ -3,18 +3,71 @@
     "Home": "Home",
     "About": "About",
     "Services": "Services",
-    "Portfolio": "Portfolio",
-    "Team": "Team",
+    "Blogs": "Blogs",
     "Contact": "Contact Us"
   },
   "Home": {
     "Hero": {
-      "titlePart1": "We Don't Build Websites.",
-      "titlePart2": "We Engineer Digital Empires.",
-      "subtitle": "Your brand deserves dominance. We merge cutting-edge technology with visionary strategy to build undisputed market leaders.",
-      "ctaStart": "Start Your Transformation",
-      "ctaExplore": "Explore Our Work",
-      "trustBar": "Trusted by 120+ brands across Egypt, UAE, Saudi Arabia & beyond."
+      "titlePart1": "Are you ready",
+      "titlePart2": "to scale your business?",
+      "subtitle": "We combine the power of advanced technology with the creativity of digital marketing to deliver a unique and integrated experience. Think digital... Think us.",
+      "ctaStart": "Contact Us",
+      "ctaExplore": "Explore Services",
+      "trustBar": "More than just services... we create opportunities."
+    },
+    "About": {
+      "badge": "About Us",
+      "title": "We Architect Digital Dominance",
+      "description": "At ITspeedlight, we don't follow trends — we set them. Our multidisciplinary team combines cutting-edge technology with bold creative vision to build digital experiences that captivate, convert, and scale globally.",
+      "statClients": "Happy Clients",
+      "statProjects": "Projects Delivered",
+      "statYears": "Years of Excellence",
+      "cta": "Learn More About Us"
+    },
+    "Services": {
+      "badge": "Our Services",
+      "title": "Engineered for Growth",
+      "subtitle": "Premium digital solutions crafted with precision, built for performance, and designed to dominate."
+    },
+    "Stats": {
+      "clients": "Happy Clients",
+      "projects": "Projects Delivered",
+      "countries": "Countries Served",
+      "satisfaction": "Client Satisfaction"
+    },
+    "Testimonials": {
+      "badge": "Testimonials",
+      "title": "What Our Clients Say",
+      "t1": {
+        "name": "Ahmed Hassan",
+        "role": "CEO, TechVenture",
+        "text": "ITspeedlight transformed our digital presence completely. The results exceeded every expectation we had. Truly world-class execution."
+      },
+      "t2": {
+        "name": "Sarah Mitchell",
+        "role": "Marketing Director, Luxe Brand",
+        "text": "The attention to detail and premium quality of their work is unmatched. They delivered a website that our competitors envy."
+      },
+      "t3": {
+        "name": "Omar Khalil",
+        "role": "Founder, GrowthHub",
+        "text": "They don't just build websites — they build revenue machines. Our conversions tripled within the first quarter."
+      },
+      "t4": {
+        "name": "Lisa Chen",
+        "role": "CTO, InnoScale",
+        "text": "The most technically sophisticated team we've ever worked with. Their engineering approach is absolute perfection."
+      },
+      "t5": {
+        "name": "Mohammed Al-Fayed",
+        "role": "Director, Gulf Enterprises",
+        "text": "From strategy to execution, ITspeedlight delivered beyond our wildest expectations. They are our permanent digital partner."
+      }
+    },
+    "CTA": {
+      "title": "Ready to Build Your Digital Empire?",
+      "subtitle": "Let's create something extraordinary together. Your transformation starts with a single conversation.",
+      "button": "Start Your Project"
     }
   },
   "About": {
@@ -99,5 +152,17 @@
       "emailTitle": "Direct Email",
       "phoneTitle": "Global Hotline"
     }
+  },
+  "Footer": {
+    "description": "Premium digital agency delivering world-class web development, branding, and marketing solutions.",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "newsletter": "Stay Updated",
+    "newsletterText": "Get the latest insights on digital growth.",
+    "emailPlaceholder": "Your email",
+    "subscribe": "Subscribe",
+    "copyright": "© 2025 ITspeedlight. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
   }
 }
