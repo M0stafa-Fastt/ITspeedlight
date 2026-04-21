@@ -30,7 +30,7 @@ function SceneContent() {
           <MorphingSphere />
         </Float>
         {/* Restored to a smaller, cleaner ambient flow */}
-        <ParticleField count={600} color="#e056fd" />
+        <ParticleField count={100} color="#e056fd" />
       </group>
 
       <Environment preset="night" />

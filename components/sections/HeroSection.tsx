@@ -94,21 +94,8 @@ export default function HeroSection() {
         onUpdate: () => setMetrics({ ...metricObj }),
       });
 
-      // Mouse Parallax for HUD
-      const handleMouseMove = (e: MouseEvent) => {
-        const { clientX, clientY } = e;
-        const xPos = (clientX / window.innerWidth - 0.5) * 20;
-        const yPos = (clientY / window.innerHeight - 0.5) * 20;
-
-        gsap.to(".hud-layer", {
-          x: xPos,
-          y: yPos,
-          duration: 1,
-          ease: "power2.out",
-        });
-      };
-      window.addEventListener("mousemove", handleMouseMove);
-      return () => window.removeEventListener("mousemove", handleMouseMove);
+      // Removed mouse movement behavior based on user request
+      
     }, sectionRef);
 
     return () => ctx.revert();
@@ -193,13 +180,6 @@ export default function HeroSection() {
             {t("ctaExplore")}
           </button>
         </div>
-      </div>
-
-      {/* Trendy Brutalist Metadata Block */}
-      <div className="absolute bottom-8 right-8 md:bottom-16 md:right-16 lg:bottom-24 lg:right-24 z-[10] hidden md:flex flex-col items-end text-right gap-1.5 opacity-60">
-        <span className="font-mono text-[8px] text-accent-cyan tracking-[0.4em] uppercase">SYSTEM.ONLINE</span>
-        <span className="font-mono text-[8px] text-white/50 tracking-[0.2em]">[ LAT. 35.6895° N // LNG. 139.6917° E ]</span>
-        <span className="font-mono text-[8px] text-white/50 tracking-[0.2em]">CORE_TEMP: 0.04K // V_2.0.4</span>
       </div>
 
       {/* Vertical Scroll Indicator */}

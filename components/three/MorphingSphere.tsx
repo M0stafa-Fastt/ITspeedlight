@@ -37,8 +37,8 @@ export default function MorphingSphere() {
           backside
           samples={4}
           thickness={1.5}
-          chromaticAberration={0.15}
-          anisotropy={0.5}
+          chromaticAberration={0.12}
+          anisotropy={0.3}
           distortion={0.6}
           distortionScale={0.5}
           temporalDistortion={0.1}
