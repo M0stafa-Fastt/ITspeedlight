@@ -25,7 +25,7 @@ function SceneContent() {
       <pointLight position={[-10, -10, -10]} intensity={2} color="#4d279b" />
       <pointLight position={[10, 10, 10]} intensity={2} color="#a13085" />
 
-      <group position={[0, 0, 0]} scale={0.7}>
+      <group position={[0, 0, 0]} scale={1.4}>
         <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
           <MorphingSphere />
         </Float>
@@ -34,7 +34,8 @@ function SceneContent() {
       </group>
 
       <Environment preset="night" />
-      {/* Fog removed to ensure Canvas is transparent over the ShaderGradient */}
+      {/* Deep cinematic fog to fade into pure black at the edges */}
+      <fog attach="fog" args={["#000000", 6, 25]} />
     </>
   );
 }

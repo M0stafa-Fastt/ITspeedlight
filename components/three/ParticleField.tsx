@@ -24,8 +24,9 @@ export default function ParticleField({ count = 800, color = "#3d5afe" }) {
 
   useFrame((state) => {
     if (pointsRef.current) {
-      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.15;
-      pointsRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.2) * 0.1;
+      // Dream-like, ultra-slow floating dust
+      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.02;
+      pointsRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.05) * 0.05;
     }
   });
 
@@ -41,13 +42,24 @@ export default function ParticleField({ count = 800, color = "#3d5afe" }) {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.08}
+        size={0.15}
         color={color}
         transparent
-        opacity={0.6}
+        opacity={0.7}
         sizeAttenuation
         depthWrite={false}
         blending={THREE.AdditiveBlending}
+        onBeforeCompile={(shader) => {
+          shader.fragmentShader = shader.fragmentShader.replace(
+            `vec4 diffuseColor = vec4( diffuse, opacity );`,
+            `
+            float d = length(gl_PointCoord - vec2(0.5));
+            if (d > 0.5) discard;
+            float glow = smoothstep(0.5, 0.1, d);
+            vec4 diffuseColor = vec4( diffuse, opacity * glow );
+            `
+          );
+        }}
       />
     </points>
   );

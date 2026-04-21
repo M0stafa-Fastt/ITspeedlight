@@ -133,49 +133,13 @@ export default function HeroSection() {
       id="hero"
       className="relative h-screen w-full flex items-center overflow-hidden bg-bg-void selection:bg-accent-blue/30 pt-16"
     >
-      {/* Full-Screen Shader Gradient Background */}
-      <div className="absolute inset-0 z-[1] pointer-events-none opacity-60 mix-blend-screen">
-        <ShaderGradientCanvas
-          style={{ width: "100%", height: "100%" }}
-          pointerEvents="none"
-          pixelDensity={1}
-        >
-          <ShaderGradient
-            animate="on"
-            type="sphere"
-            wireframe={false}
-            shader="defaults"
-            uTime={0}
-            uSpeed={0.15}
-            uStrength={0.3}
-            uDensity={0.8}
-            uFrequency={5.5}
-            uAmplitude={3.2}
-            positionX={-0.1}
-            positionY={0}
-            positionZ={0}
-            rotationX={0}
-            rotationY={130}
-            rotationZ={70}
-            color1="#4e6772"
-            color2="#a13085"
-            color3="#4d279b"
-            reflection={0.4}
-            cAzimuthAngle={270}
-            cPolarAngle={180}
-            cDistance={0.5}
-            cameraZoom={15.1}
-            lightType="env"
-            brightness={0.8}
-            envPreset="city"
-            grain="on"
-            toggleAxis={false}
-            zoomOut={false}
-            hoverState=""
-            enableTransition={false}
-          />
-        </ShaderGradientCanvas>
+      {/* Full-Screen 3D Dreamscape Background */}
+      <div className="absolute inset-0 z-[1] pointer-events-none">
+        <HeroScene />
       </div>
+
+      {/* Cinematic Vignette Overlay to darken edges and frame the glowing center */}
+      <div className="absolute inset-0 z-[2] pointer-events-none bg-[radial-gradient(ellipse_at_center,transparent_20%,rgba(0,0,0,0.85)_100%)]" />
 
       {/* HUD Layer: Minimalist Framing Only */}
       <div className="hud-layer absolute inset-0 z-[5] pointer-events-none p-12">
@@ -185,58 +149,49 @@ export default function HeroSection() {
         <div className="hud-bracket absolute bottom-12 right-12 w-10 h-10 border-b border-r border-white/40 rounded-br-sm transition-all duration-700" />
       </div>
 
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-8 md:px-12 grid lg:grid-cols-12 gap-8 items-center h-full">
-        {/* Left Column: Content */}
-        <div className="lg:col-span-6 flex flex-col items-start text-left justify-center py-6">
-          <div className="mb-6 flex items-center gap-3" ref={trustRef}>
-            <div className="w-8 h-[2px] bg-accent-blue shadow-[0_0_10px_rgba(59,130,246,0.3)]" />
-            <span className="text-white font-sans text-[9px] font-bold tracking-widest leading-none">
-              {t("trustBar")}
-            </span>
-          </div>
-
-          <h1
-            ref={title1Ref}
-            className="font-orbitron font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white leading-[1.2] tracking-tight mb-1"
-          >
-            {splitText(t("titlePart1").toUpperCase())}
-          </h1>
-
-          <h1
-            ref={title2Ref}
-            className="font-orbitron font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white leading-[1.2] tracking-tight mb-10"
-          >
-            <span className="text-accent-blue">
-              {splitText(t("titlePart2").toUpperCase())}
-            </span>
-          </h1>
-
-          <p
-            ref={subtitleRef}
-            className="font-sans text-[11px] md:text-xs text-white/60 max-w-md leading-relaxed mb-12"
-          >
-            {t("subtitle")}
-          </p>
-
-          <div ref={ctaRef} className="flex flex-wrap items-center gap-5">
-            <button className="relative px-7 py-3 bg-white text-bg-void rounded-full font-sans font-black text-[9px] uppercase tracking-widest overflow-hidden group transition-transform hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.1)]">
-              <span className="relative z-10 group-hover:text-white transition-colors duration-500">
-                {t("ctaStart")}
-              </span>
-              <div className="absolute inset-0 bg-accent-blue translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-            </button>
-
-            <button className="px-7 py-3 border border-white/30 rounded-full font-sans font-black text-[9px] uppercase tracking-widest text-white hover:bg-white/5 transition-all">
-              {t("ctaExplore")}
-            </button>
-          </div>
+      {/* Cinematic Movie Poster Layout: Text pinned to bottom-left */}
+      <div className="absolute bottom-8 left-8 md:bottom-16 md:left-16 lg:bottom-24 lg:left-24 z-[10] flex flex-col items-start text-left">
+        <div className="mb-4 flex items-center gap-3" ref={trustRef}>
+          <div className="w-8 h-[2px] bg-accent-blue shadow-[0_0_10px_rgba(59,130,246,0.3)]" />
+          <span className="text-white font-sans text-[9px] font-bold tracking-widest leading-none">
+            {t("trustBar")}
+          </span>
         </div>
 
-        {/* Right Column: 3D visual container */}
-        <div className="hidden lg:flex lg:col-span-6 relative h-full items-center justify-center">
-          <div className="w-full h-[28rem] relative">
-            <HeroScene />
-          </div>
+        <h1
+          ref={title1Ref}
+          className="font-orbitron font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white leading-[1.1] tracking-tight mb-1"
+        >
+          {splitText(t("titlePart1").toUpperCase())}
+        </h1>
+
+        <h1
+          ref={title2Ref}
+          className="font-orbitron font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white leading-[1.1] tracking-tight mb-6"
+        >
+          <span className="text-accent-blue">
+            {splitText(t("titlePart2").toUpperCase())}
+          </span>
+        </h1>
+
+        <p
+          ref={subtitleRef}
+          className="font-sans text-[11px] md:text-xs text-white/60 max-w-sm leading-relaxed mb-10"
+        >
+          {t("subtitle")}
+        </p>
+
+        <div ref={ctaRef} className="flex flex-wrap items-center gap-4">
+          <button className="relative px-7 py-3 bg-white text-bg-void rounded-full font-sans font-black text-[9px] uppercase tracking-widest overflow-hidden group transition-transform hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+            <span className="relative z-10 group-hover:text-white transition-colors duration-500">
+              {t("ctaStart")}
+            </span>
+            <div className="absolute inset-0 bg-accent-blue translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+          </button>
+
+          <button className="px-7 py-3 border border-white/30 rounded-full font-sans font-black text-[9px] uppercase tracking-widest text-white hover:bg-white/5 transition-all">
+            {t("ctaExplore")}
+          </button>
         </div>
       </div>
     </section>
