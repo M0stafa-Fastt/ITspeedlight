@@ -1,12 +1,11 @@
 "use client";
 
-import { Suspense } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import MorphingSphere from "./MorphingSphere";
 import ParticleField from "./ParticleField";
 
-// Computed once at module load — never inside render
+// ─── Device tier detection (computed once at module load) ───────────────────
 const IS_MOBILE =
   typeof window !== "undefined" &&
   /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
@@ -19,66 +18,83 @@ const CFG = {
   low: {
     dpr: [1, 1] as [number, number],
     fov: 55,
-    particles: 50,
+    stars: 40,
     antialias: false,
   },
   mid: {
     dpr: [1, 1.5] as [number, number],
     fov: 50,
-    particles: 100,
+    stars: 80,
     antialias: false,
   },
   high: {
     dpr: [1, 2] as [number, number],
     fov: 45,
-    particles: 180,
+    stars: 140,
     antialias: true,
   },
 }[TIER];
 
+// ─── Scene content ─────────────────────────────────────────────────────────
 function SceneContent() {
   const { viewport } = useThree();
-  const scale = Math.min(1.05, viewport.width / 10);
+  const scale = Math.min(1.0, viewport.width / 10);
 
   return (
     <>
-      <ambientLight intensity={0.5} />
-      {/* Modern space-themed lighting: Deep Blue and Cyan */}
-      <pointLight position={[-10, -10, -10]} intensity={4} color="#3d5afe" />
-      <pointLight position={[10, 10, 10]} intensity={4} color="#00ffff" />
+      {/* Three-point lighting for cinematic depth */}
+      <ambientLight intensity={0.3} />
+
+      {/* Key light: warm white from top-right */}
+      <directionalLight
+        position={[8, 8, 5]}
+        intensity={1.5}
+        color="#ffeedd"
+      />
+
+      {/* Fill light: cool blue from left */}
+      <pointLight position={[-8, -2, 6]} intensity={3} color="#4d7fff" />
+
+      {/* Rim light: subtle cyan backlight for edge definition */}
+      <pointLight position={[0, 4, -8]} intensity={2} color="#00ccff" />
 
       <group scale={scale}>
         <MorphingSphere />
-        {/* Star-white particles for a cosmic atmosphere */}
-        <ParticleField count={CFG.particles} color="#ffffff" />
+        <ParticleField count={CFG.stars} />
       </group>
 
-      <Environment preset="night" />
-      <fog attach="fog" args={["#000000", 18, 32]} />
+      {/* Studio environment for clean reflections on the orb */}
+      <Environment preset="city" />
+
+      {/* Fog: starts far back so the orb stays crisp */}
+      <fog attach="fog" args={["#050510", 20, 40]} />
     </>
   );
 }
 
+// ─── Canvas wrapper ────────────────────────────────────────────────────────
 export default function HeroScene() {
   return (
     <div className="absolute inset-0 z-0 overflow-hidden">
       <Canvas
-        camera={{ position: [0, 0, 15], fov: CFG.fov }}
+        camera={{ position: [0, 0, 12], fov: CFG.fov }}
         dpr={CFG.dpr}
         gl={{
           antialias: CFG.antialias,
           powerPreference: "high-performance",
-          stencil: false, // never used — free perf win
+          stencil: false,
           depth: true,
-          alpha: false, // opaque canvas = faster compositing
+          alpha: false,
         }}
         onCreated={({ gl }) => {
-          gl.setClearColor(0x000000, 1);
-
-          // Pause the loop when tab is hidden — prevents jank on resume
+          gl.setClearColor(0x050510, 1);
+          // Pause render loop when tab is hidden
           document.addEventListener("visibilitychange", () => {
             if (document.hidden) gl.setAnimationLoop(null);
-            else gl.setAnimationLoop((gl as any)._currentAnimationLoop ?? null);
+            else
+              gl.setAnimationLoop(
+                (gl as any)._currentAnimationLoop ?? null,
+              );
           });
         }}
       >

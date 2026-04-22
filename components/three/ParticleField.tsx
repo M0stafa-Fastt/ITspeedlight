@@ -4,48 +4,41 @@ import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-// Shader compiled ONCE with twinkling and trail logic
-const makeParticleMaterial = (color: string) =>
+// ─── Shader: Soft twinkling starfield ───────────────────────────────────────
+const makeStarMaterial = () =>
   new THREE.ShaderMaterial({
     uniforms: {
-      uColor: { value: new THREE.Color(color) },
-      uOpacity: { value: 0.9 },
       uTime: { value: 0 },
     },
     vertexShader: `
       attribute float aSize;
-      attribute float aSpeed;
-      attribute float aOffset;
+      attribute float aPhase;
       uniform float uTime;
-      varying float vOpacity;
-      
-      void main() {
-        // Starfield base position
-        vec3 pos = position;
-        
-        // For 'Data Streaks' (if aSize is negative, it's a streak)
-        if (aSize < 0.0) {
-           pos.x = mod(pos.x + uTime * aSpeed * 2.0 + aOffset, 60.0) - 30.0;
-        }
+      varying float vAlpha;
 
-        vec4 mv = modelViewMatrix * vec4(pos, 1.0);
-        
-        // Twinkling logic
-        float twinkle = sin(uTime * aSpeed * 3.0 + aOffset) * 0.5 + 0.5;
-        vOpacity = 0.3 + (twinkle * 0.7);
-        
-        gl_PointSize = (abs(aSize) * 180.0) / -mv.z;
-        gl_Position  = projectionMatrix * mv;
+      void main() {
+        vec4 mv = modelViewMatrix * vec4(position, 1.0);
+
+        // Smooth, gentle twinkling — no harsh blinking
+        float twinkle = sin(uTime * 0.8 + aPhase) * 0.3 + 0.7;
+        vAlpha = twinkle;
+
+        gl_PointSize = (aSize * 120.0) / -mv.z;
+        gl_Position = projectionMatrix * mv;
       }
     `,
     fragmentShader: `
-      uniform vec3  uColor;
-      varying float vOpacity;
+      varying float vAlpha;
       void main() {
         float d = length(gl_PointCoord - vec2(0.5));
         if (d > 0.5) discard;
-        float glow = smoothstep(0.5, 0.05, d);
-        gl_FragColor = vec4(uColor, glow * vOpacity);
+
+        // Soft glow falloff — no hard edges
+        float glow = smoothstep(0.5, 0.0, d);
+        float alpha = glow * glow * vAlpha * 0.6;
+
+        // Warm white with a hint of blue
+        gl_FragColor = vec4(0.85, 0.9, 1.0, alpha);
       }
     `,
     transparent: true,
@@ -54,65 +47,47 @@ const makeParticleMaterial = (color: string) =>
   });
 
 export default function ParticleField({
-  count = 100,
-  color = "#ffffff",
+  count = 120,
 }: {
   count?: number;
   color?: string;
 }) {
   const pointsRef = useRef<THREE.Points>(null!);
-  const material = useMemo(() => makeParticleMaterial(color), [color]);
+  const material = useMemo(() => makeStarMaterial(), []);
 
   const geometry = useMemo(() => {
     const geo = new THREE.BufferGeometry();
-    
-    // Combine stars and data streaks into one draw call
-    const streakCount = Math.floor(count * 0.15); // 15% are streaks
-    const totalCount = count + streakCount;
-    
-    const pos = new Float32Array(totalCount * 3);
-    const sizes = new Float32Array(totalCount);
-    const speeds = new Float32Array(totalCount);
-    const offsets = new Float32Array(totalCount);
+    const pos = new Float32Array(count * 3);
+    const sizes = new Float32Array(count);
+    const phases = new Float32Array(count);
 
-    for (let i = 0; i < totalCount; i++) {
-      if (i < count) {
-        // Starfield
-        const r = 5 + Math.random() * 25; 
-        const theta = Math.random() * Math.PI * 2;
-        const phi = Math.acos(2 * Math.random() - 1);
-        pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
-        pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-        pos[i * 3 + 2] = r * Math.cos(phi);
-        sizes[i] = 0.4 + Math.random() * 0.8;
-        speeds[i] = 0.5 + Math.random();
-      } else {
-        // Data Streaks (Modern Tech look)
-        pos[i * 3] = (Math.random() - 0.5) * 60; // x
-        pos[i * 3 + 1] = (Math.random() - 0.5) * 20; // y
-        pos[i * 3 + 2] = (Math.random() - 0.5) * 20; // z
-        sizes[i] = - (0.2 + Math.random() * 0.4); // Negative indicates streak
-        speeds[i] = 2.0 + Math.random() * 3.0; // Fast
-      }
-      offsets[i] = Math.random() * 100;
+    for (let i = 0; i < count; i++) {
+      // Spread stars across a large sphere — not clustered near center
+      const r = 8 + Math.random() * 30;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+
+      pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+      pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+      pos[i * 3 + 2] = r * Math.cos(phi);
+
+      // Mix of small ambient dots and a few brighter stars
+      sizes[i] = 0.3 + Math.random() * 0.7;
+      phases[i] = Math.random() * Math.PI * 2; // Random phase offset
     }
 
     geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
     geo.setAttribute("aSize", new THREE.BufferAttribute(sizes, 1));
-    geo.setAttribute("aSpeed", new THREE.BufferAttribute(speeds, 1));
-    geo.setAttribute("aOffset", new THREE.BufferAttribute(offsets, 1));
+    geo.setAttribute("aPhase", new THREE.BufferAttribute(phases, 1));
     return geo;
   }, [count]);
 
   useFrame((state, delta) => {
+    material.uniforms.uTime.value = state.clock.elapsedTime;
+
+    // Extremely slow drift — feels like the universe is breathing
     const d = Math.min(delta, 0.05);
-    const t = state.clock.elapsedTime;
-    material.uniforms.uTime.value = t;
-    
-    // Smooth cosmic rotation on all axes
-    pointsRef.current.rotation.y += d * 0.015;
-    pointsRef.current.rotation.x = Math.sin(t * 0.03) * 0.05;
-    pointsRef.current.rotation.z = Math.sin(t * 0.02) * 0.04;
+    pointsRef.current.rotation.y += d * 0.008;
   });
 
   return <points ref={pointsRef} geometry={geometry} material={material} />;
