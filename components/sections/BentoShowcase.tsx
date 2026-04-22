@@ -5,7 +5,7 @@ import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Globe, Cloud, ShieldCheck, Share2, Search, ArrowRight } from "lucide-react";
+import { Globe, Cloud, ArrowRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -111,40 +111,7 @@ export default function BentoShowcase() {
             </div>
           </div>
 
-          {/* Card 5: Security (col-span-1, row-span-1) */}
-          <div className="bento-card md:col-span-1 md:row-span-1 glass-panel rounded-3xl p-8 flex flex-col justify-between border border-white/5 hover:border-white/20 transition-all group">
-            <div className="w-14 h-14 rounded-2xl flex items-center justify-center border border-white/10 bg-white/5 group-hover:scale-110 group-hover:bg-accent-indigo/10 transition-all duration-500">
-               <ShieldCheck className="w-7 h-7 text-accent-indigo" />
-            </div>
-            <div>
-               <h4 className="font-syne font-bold text-xl text-white mb-2 group-hover:text-accent-indigo transition-colors">{tItems(`security.title`)}</h4>
-               <p className="font-sans text-sm text-text-secondary line-clamp-3">{tItems(`security.desc`)}</p>
-            </div>
-          </div>
-
-          {/* Card 6: Social Media (col-span-1, row-span-1) */}
-          <div className="bento-card md:col-span-1 md:row-span-1 glass-panel rounded-3xl p-8 flex flex-col justify-between border border-white/5 hover:border-white/20 transition-all group">
-            <div className="w-14 h-14 rounded-2xl flex items-center justify-center border border-white/10 bg-white/5 group-hover:scale-110 group-hover:bg-accent-blue/10 transition-all duration-500">
-               <Share2 className="w-7 h-7 text-accent-blue" />
-            </div>
-            <div>
-               <h4 className="font-syne font-bold text-xl text-white mb-2 group-hover:text-accent-blue transition-colors">{tItems(`social.title`)}</h4>
-               <p className="font-sans text-sm text-text-secondary line-clamp-3">{tItems(`social.desc`)}</p>
-            </div>
-          </div>
-
-          {/* Card 7: SEO (col-span-1, row-span-1) */}
-          <div className="bento-card md:col-span-1 md:row-span-1 glass-panel rounded-3xl p-8 flex flex-col justify-between border border-white/5 hover:border-white/20 transition-all group">
-            <div className="w-14 h-14 rounded-2xl flex items-center justify-center border border-white/10 bg-white/5 group-hover:scale-110 group-hover:bg-accent-cyan/10 transition-all duration-500">
-               <Search className="w-7 h-7 text-accent-cyan" />
-            </div>
-            <div>
-               <h4 className="font-syne font-bold text-xl text-white mb-2 group-hover:text-accent-cyan transition-colors">{tItems(`seo.title`)}</h4>
-               <p className="font-sans text-sm text-text-secondary line-clamp-3">{tItems(`seo.desc`)}</p>
-            </div>
-          </div>
-
-          {/* Card 8: CTA (col-span-1, row-span-1) */}
+          {/* Card 5: CTA (col-span-1, row-span-1) */}
           <div className="bento-card md:col-span-1 md:row-span-1 glass-panel rounded-3xl p-8 flex flex-col justify-between items-start border border-accent-cyan/20 hover:border-accent-cyan/50 transition-all group bg-accent-cyan/5 relative">
              <div className="w-16 h-16 rounded-full bg-white text-bg-void flex items-center justify-center group-hover:scale-110 transition-transform">
                 <ArrowRight className="w-6 h-6 group-hover:-rotate-45 transition-transform duration-300" />
