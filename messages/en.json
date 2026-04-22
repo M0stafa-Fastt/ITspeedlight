@@ -98,46 +98,125 @@
   "Services": {
     "title": "Elite Services",
     "subtitle": "Everything you need to dominate the digital landscape.",
+    "badge": "Capabilities Index",
+    "exploreCta": "Explore",
+    "backToServices": "Back to Services",
+    "detailBadge": "Service Detail",
+    "featuresTitle": "Capabilities",
+    "featuresHeading": "What We Deliver",
+    "ctaTitle": "Ready to Get Started?",
+    "ctaSubtitle": "Let's transform your vision into a digital reality. Our team is ready to architect your success.",
+    "ctaButton": "Start Your Project",
     "items": {
+      "web": {
+        "title": "Web Development",
+        "desc": "High-performance, ultra-secure scalable platforms built with cutting-edge technologies.",
+        "longDesc": "We engineer next-generation web platforms using React, Next.js, and modern frameworks that are blazing fast, fully responsive, and built to scale. Every project is a bespoke digital masterpiece crafted from the ground up.",
+        "features": {
+          "f1": { "title": "Custom Architecture", "text": "Tailor-made solutions using Next.js, React, and TypeScript for maximum performance and maintainability." },
+          "f2": { "title": "Responsive & Adaptive", "text": "Pixel-perfect designs that deliver flawless experiences across every device and screen size." },
+          "f3": { "title": "Performance Optimized", "text": "Sub-second load times with server-side rendering, code splitting, and advanced caching strategies." },
+          "f4": { "title": "SEO-Ready Foundation", "text": "Built-in technical SEO best practices ensuring your platform ranks from day one." }
+        }
+      },
       "itConsulting": {
         "title": "IT Consulting",
-        "desc": "Expert guidance to align your technological infrastructure with your business goals."
-      },
-      "lightCurrent": {
-        "title": "Light Current Systems",
-        "desc": "Advanced low-voltage solutions for smart buildings, communications, and safety."
-      },
-      "security": {
-        "title": "Security Solutions",
-        "desc": "Comprehensive digital and physical security integrations to protect your critical assets."
-      },
-      "cloud": {
-        "title": "Cloud Solutions",
-        "desc": "Scalable, resilient cloud architecture and migration services for maximum uptime."
-      },
-      "network": {
-        "title": "Network Consulting",
-        "desc": "Robust network design and optimization to guarantee seamless connectivity."
+        "desc": "Expert guidance to align your technological infrastructure with your business goals.",
+        "longDesc": "Our IT consulting services bridge the gap between your business objectives and technology capabilities. We analyze, strategize, and implement solutions that drive measurable growth and operational excellence.",
+        "features": {
+          "f1": { "title": "Technology Audits", "text": "Comprehensive assessment of your current IT infrastructure to identify gaps and opportunities." },
+          "f2": { "title": "Strategic Roadmaps", "text": "Data-driven technology roadmaps aligned with your business goals and growth trajectory." },
+          "f3": { "title": "Digital Transformation", "text": "End-to-end guidance for modernizing legacy systems and adopting cutting-edge technologies." },
+          "f4": { "title": "Vendor Management", "text": "Expert evaluation and management of technology vendors to maximize ROI and minimize risk." }
+        }
       },
       "seo": {
         "title": "SEO Services",
-        "desc": "Deeply integrated organic search engineering to monopolize Google rankings."
+        "desc": "Deeply integrated organic search engineering to monopolize Google rankings.",
+        "longDesc": "We don't just optimize for search engines — we engineer organic dominance. Our SEO strategies combine deep technical audits, content architecture, and data-driven link building to capture high-intent traffic at scale.",
+        "features": {
+          "f1": { "title": "Technical SEO Audit", "text": "Deep-dive analysis of site architecture, Core Web Vitals, crawlability, and indexation issues." },
+          "f2": { "title": "Content Strategy", "text": "Keyword research, topic clustering, and content calendars designed to capture search demand." },
+          "f3": { "title": "Link Building", "text": "White-hat authority building through strategic outreach, digital PR, and high-value partnerships." },
+          "f4": { "title": "Analytics & Reporting", "text": "Transparent, data-rich reporting with actionable insights and measurable KPIs." }
+        }
+      },
+      "cloud": {
+        "title": "Cloud Solutions",
+        "desc": "Scalable, resilient cloud architecture and migration services for maximum uptime.",
+        "longDesc": "We design and deploy cloud infrastructure that scales seamlessly with your business. From migration planning to multi-cloud orchestration, we ensure your systems are resilient, secure, and cost-optimized.",
+        "features": {
+          "f1": { "title": "Cloud Migration", "text": "Seamless migration of workloads to AWS, Azure, or GCP with zero downtime strategies." },
+          "f2": { "title": "Infrastructure as Code", "text": "Automated, reproducible infrastructure using Terraform, CloudFormation, and modern IaC practices." },
+          "f3": { "title": "Cost Optimization", "text": "Continuous monitoring and right-sizing to eliminate waste and reduce cloud spend." },
+          "f4": { "title": "High Availability", "text": "Multi-region architectures with automated failover ensuring 99.99% uptime SLAs." }
+        }
+      },
+      "security": {
+        "title": "Security Solutions",
+        "desc": "Comprehensive digital and physical security integrations to protect your critical assets.",
+        "longDesc": "We deliver end-to-end security solutions that protect your digital and physical assets. From CCTV and access control to cybersecurity frameworks, we build defense systems that keep threats at bay.",
+        "features": {
+          "f1": { "title": "Surveillance Systems", "text": "Enterprise-grade CCTV, IP cameras, and monitoring solutions with intelligent analytics." },
+          "f2": { "title": "Access Control", "text": "Biometric, card-based, and smart access control systems for secure facility management." },
+          "f3": { "title": "Cybersecurity", "text": "Firewall configuration, intrusion detection, and vulnerability assessments to fortify your digital perimeter." },
+          "f4": { "title": "Compliance & Auditing", "text": "Security audits and compliance frameworks aligned with industry standards and regulations." }
+        }
+      },
+      "network": {
+        "title": "Network Consulting",
+        "desc": "Robust network design and optimization to guarantee seamless connectivity.",
+        "longDesc": "We architect enterprise-grade networks that deliver unbreakable connectivity and peak performance. From structured cabling to wireless solutions, every network we design is built for reliability and future growth.",
+        "features": {
+          "f1": { "title": "Network Design", "text": "End-to-end network architecture including LAN, WAN, and SD-WAN solutions tailored to your needs." },
+          "f2": { "title": "Wireless Solutions", "text": "High-density Wi-Fi deployments with seamless roaming and enterprise-grade security." },
+          "f3": { "title": "Performance Monitoring", "text": "Real-time network monitoring, diagnostics, and proactive issue resolution." },
+          "f4": { "title": "Structured Cabling", "text": "Professional cabling infrastructure design and installation for maximum reliability." }
+        }
+      },
+      "lightCurrent": {
+        "title": "Light Current Systems",
+        "desc": "Advanced low-voltage solutions for smart buildings, communications, and safety.",
+        "longDesc": "We specialize in low-voltage systems that power modern smart buildings. From fire alarms and PA systems to building management and AV solutions, we deliver integrated systems that work in harmony.",
+        "features": {
+          "f1": { "title": "Fire Alarm Systems", "text": "Addressable and conventional fire detection systems with full integration and compliance." },
+          "f2": { "title": "PA & Sound Systems", "text": "Public address, background music, and emergency announcement systems for any facility." },
+          "f3": { "title": "Building Management", "text": "Centralized BMS solutions for HVAC, lighting, and energy management automation." },
+          "f4": { "title": "AV Solutions", "text": "Conference rooms, digital signage, and multimedia systems engineered for seamless collaboration." }
+        }
       },
       "email": {
         "title": "Email Marketing",
-        "desc": "High-conversion automated email campaigns that nurture leads and drive sales."
+        "desc": "High-conversion automated email campaigns that nurture leads and drive sales.",
+        "longDesc": "We build automated email ecosystems that turn subscribers into loyal customers. From drip campaigns to behavioral triggers, every email is engineered to maximize engagement and revenue.",
+        "features": {
+          "f1": { "title": "Campaign Strategy", "text": "Data-driven campaign planning with A/B testing, segmentation, and personalized messaging." },
+          "f2": { "title": "Automation Flows", "text": "Sophisticated drip sequences, welcome series, and behavioral triggers that convert on autopilot." },
+          "f3": { "title": "Template Design", "text": "Premium, responsive email templates that match your brand identity and drive clicks." },
+          "f4": { "title": "Analytics & Optimization", "text": "Deep analytics on open rates, click-through rates, and conversions with continuous optimization." }
+        }
       },
       "social": {
         "title": "Social Media Marketing",
-        "desc": "Data-driven organic and viral strategies to capture market attention."
-      },
-      "web": {
-        "title": "Web Development",
-        "desc": "High-performance, ultra-secure scalable platforms built with cutting-edge technologies."
+        "desc": "Data-driven organic and viral strategies to capture market attention.",
+        "longDesc": "We craft social media strategies that build communities, drive engagement, and generate measurable business results. From content creation to paid campaigns, we maximize your brand's visibility across all platforms.",
+        "features": {
+          "f1": { "title": "Content Creation", "text": "Scroll-stopping visuals, reels, and copy crafted to resonate with your target audience." },
+          "f2": { "title": "Community Management", "text": "Active engagement, reputation monitoring, and community building that fosters brand loyalty." },
+          "f3": { "title": "Paid Advertising", "text": "ROI-focused ad campaigns across Meta, TikTok, LinkedIn, and Google with precise targeting." },
+          "f4": { "title": "Growth Analytics", "text": "Comprehensive reporting on reach, engagement, and conversion metrics with actionable insights." }
+        }
       },
       "career": {
         "title": "Career",
-        "desc": "Join our team of visionary engineers and marketers building the future."
+        "desc": "Join our team of visionary engineers and marketers building the future.",
+        "longDesc": "We're always looking for exceptional talent to join our mission. At ITspeedlight, you'll work on cutting-edge projects, collaborate with industry experts, and grow your career in a fast-paced, innovation-driven environment.",
+        "features": {
+          "f1": { "title": "Cutting-Edge Projects", "text": "Work on real-world projects using the latest technologies like Next.js, Three.js, and AI." },
+          "f2": { "title": "Growth & Learning", "text": "Continuous learning opportunities, mentorship programs, and access to industry conferences." },
+          "f3": { "title": "Creative Freedom", "text": "We encourage bold ideas and give you the autonomy to push boundaries and innovate." },
+          "f4": { "title": "Global Impact", "text": "Build products and platforms that serve clients across the Middle East and beyond." }
+        }
       }
     }
   },

@@ -1,150 +1,132 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { BackgroundEffect } from "@/components/ui/BackgroundEffect";
-import { 
-  MonitorSmartphone, 
-  Zap, 
-  ShieldCheck, 
-  CloudCog, 
-  Network, 
-  Search, 
-  Mail, 
-  Smartphone, 
-  Code2, 
-  Briefcase 
-} from "lucide-react";
-
-const servicesList = [
-  { key: "itConsulting", icon: MonitorSmartphone, color: "from-[#00F5FF] to-[#3D5AFE]" },
-  { key: "lightCurrent", icon: Zap, color: "from-amber-400 to-orange-500" },
-  { key: "security", icon: ShieldCheck, color: "from-rose-500 to-red-600" },
-  { key: "cloud", icon: CloudCog, color: "from-sky-400 to-blue-600" },
-  { key: "network", icon: Network, color: "from-emerald-400 to-teal-500" },
-  { key: "seo", icon: Search, color: "from-[#E056FD] to-fuchsia-500" },
-  { key: "email", icon: Mail, color: "from-yellow-400 to-amber-600" },
-  { key: "social", icon: Smartphone, color: "from-pink-500 to-rose-500" },
-  { key: "web", icon: Code2, color: "from-[#00F5FF] to-blue-500" },
-  { key: "career", icon: Briefcase, color: "from-indigo-400 to-purple-600" },
-];
+import { services } from "@/lib/servicesData";
+import { ArrowUpRight } from "lucide-react";
 
 export default function ServicesPage() {
   const t = useTranslations("Services");
+  const locale = useLocale();
 
   return (
-    <main className="bg-bg-void relative overflow-clip font-sans text-balance pb-24">
+    <main className="bg-bg-void relative overflow-clip font-sans text-balance pb-32">
       
       {/* Premium Lightweight Background */}
       <BackgroundEffect />
 
-      <div className="max-w-[1440px] mx-auto relative z-10 flex flex-col">
-          
-          {/* Header Block */}
-          <div className="min-h-[50vh] lg:min-h-[70vh] flex flex-col justify-center px-6 lg:px-12 pt-32 pb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-            >
-              <h1 className="font-orbitron font-black text-5xl sm:text-7xl lg:text-[5.5rem] tracking-tight leading-[1.05] bg-gradient-to-br from-white via-white/90 to-white/30 bg-clip-text text-transparent mb-8 drop-shadow-sm">
-                <span className="block text-accent-cyan mb-4 text-lg sm:text-xl font-mono tracking-widest font-normal uppercase">
-                  Capabilities Index
-                </span>
-                {t("title")}
-              </h1>
-              <p className="font-sans text-xl sm:text-2xl text-text-secondary max-w-xl leading-relaxed font-light">
-                {t("subtitle")}
-              </p>
-            </motion.div>
-          </div>
+      <div className="max-w-[1440px] mx-auto relative z-10">
 
-          {/* Stacking Sections */}
-          <div className="flex flex-col w-full relative">
-            {servicesList.map((service, index) => {
-               const Icon = service.icon;
-               return (
-                 <div 
-                   key={service.key} 
-                   className="w-full relative min-h-[120vh] lg:min-h-[150vh] flex flex-col lg:flex-row items-start z-10 bg-bg-void lg:bg-transparent"
-                 >
-                    {/* STICKY VISUAL CANVAS (Fixed per section while scrolling its content) */}
-                    <div className="w-full lg:w-1/2 sticky top-0 h-[45vh] lg:h-screen flex items-center justify-center p-6 lg:p-12 overflow-hidden z-0 bg-bg-void/80 lg:bg-transparent backdrop-blur-md lg:backdrop-blur-none border-b border-white/5 lg:border-none">
-                       
-                       {/* Background Glow */}
-                       <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] lg:w-[600px] lg:h-[600px] bg-gradient-to-tr ${service.color} opacity-[0.06] blur-[100px] rounded-full pointer-events-none`} />
+        {/* ═══════════════════ HERO HEADER ═══════════════════ */}
+        <div className="min-h-[50vh] lg:min-h-[60vh] flex flex-col justify-center px-6 lg:px-12 pt-32 pb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {/* Segment Marker */}
+            <div className="inline-flex items-center gap-4 mb-8">
+              <span className="w-3 h-3 rounded-full bg-accent-cyan shadow-[0_0_15px_rgba(0,245,255,0.5)]" />
+              <span className="font-mono text-sm tracking-[0.3em] text-text-disabled uppercase">
+                {t("badge")}
+              </span>
+            </div>
 
-                       {/* Giant Background Number */}
-                       <div className="absolute inset-0 flex items-center justify-center select-none z-0 pointer-events-none">
-                         <span className="font-orbitron font-black text-[12rem] lg:text-[25rem] xl:text-[35rem] text-white/[0.02] leading-none">
-                           {String(index + 1).padStart(2, '0')}
-                         </span>
-                       </div>
+            <h1 className="font-orbitron font-black text-5xl sm:text-7xl lg:text-[5.5rem] tracking-tight leading-[1.05] bg-gradient-to-br from-white via-white/90 to-white/30 bg-clip-text text-transparent mb-8 drop-shadow-sm">
+              {t("title")}
+            </h1>
+            <p className="font-sans text-xl sm:text-2xl text-text-secondary max-w-xl leading-relaxed font-light">
+              {t("subtitle")}
+            </p>
+          </motion.div>
+        </div>
 
-                       {/* Art Piece with smooth entrance via whileInView */}
-                       <motion.div
-                         initial={{ opacity: 0, scale: 0.8, filter: "blur(20px)" }}
-                         whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                         viewport={{ once: false, margin: "-10% 0px -10% 0px" }}
-                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                         className="relative z-10 aspect-square flex items-center justify-center w-full max-w-[200px] lg:max-w-md xl:max-w-lg"
-                       >
-                         {/* Subtle outer orbital rings */}
-                         <div className="absolute inset-0 rounded-full border border-white/5 animate-[spin_30s_linear_infinite]" />
-                         <div className="absolute inset-6 lg:inset-8 rounded-full border border-white/10 border-dashed animate-[spin_40s_linear_infinite_reverse]" />
-                         
-                         {/* Inner Core Glass Box */}
-                         <div className="w-32 h-32 lg:w-56 lg:h-56 xl:w-64 xl:h-64 rounded-full border border-white/10 bg-white/[0.01] backdrop-blur-[30px] shadow-[0_0_40px_rgba(0,0,0,0.5),inset_0_2px_15px_rgba(255,255,255,0.05)] flex items-center justify-center relative overflow-hidden transition-all duration-700">
-                            {/* Inner soft colored glow */}
-                            <div className={`absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t ${service.color} opacity-10 blur-xl`} />
-                            
-                            <Icon className="w-12 h-12 lg:w-24 lg:h-24 xl:w-28 xl:h-28 text-white z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]" strokeWidth={1.5} />
-                         </div>
-                       </motion.div>
+        {/* ═══════════════════ SERVICE CARDS GRID ═══════════════════ */}
+        <div className="px-6 lg:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-6">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <motion.div
+                  key={service.slug}
+                  initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  viewport={{ once: true, margin: "-5%" }}
+                  transition={{
+                    duration: 0.7,
+                    delay: index * 0.06,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
+                  <Link
+                    href={`/${locale}/services/${service.slug}`}
+                    className="group relative block h-full"
+                  >
+                    <div className="relative h-full rounded-[1.5rem] border border-white/[0.06] bg-white/[0.02] backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:bg-white/[0.04] hover:-translate-y-1 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]">
+                      
+                      {/* Gradient Glow — appears on hover */}
+                      <div
+                        className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`}
+                        style={{
+                          background: `radial-gradient(ellipse at 50% 0%, ${service.accentHex}12, transparent 70%)`,
+                        }}
+                      />
+
+                      {/* Faint number watermark */}
+                      <div className="absolute top-4 right-5 select-none pointer-events-none">
+                        <span className="font-orbitron font-black text-[4rem] leading-none text-white/[0.02] group-hover:text-white/[0.05] transition-colors duration-700">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+
+                      {/* Content */}
+                      <div className="relative z-10 p-7 lg:p-8 flex flex-col min-h-[260px]">
+                        {/* Icon */}
+                        <div
+                          className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-white/[0.08] group-hover:border-white/[0.15] transition-all duration-500 group-hover:scale-110"
+                          style={{ background: `${service.accentHex}10` }}
+                        >
+                          <Icon
+                            className="w-7 h-7 transition-colors duration-500"
+                            style={{ color: service.accentHex }}
+                            strokeWidth={1.5}
+                          />
+                        </div>
+
+                        {/* Title & Description */}
+                        <h3 className="font-syne font-bold text-xl lg:text-2xl text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r transition-all duration-500"
+                          style={{
+                            // @ts-ignore
+                            "--tw-gradient-from": service.accentHex,
+                            "--tw-gradient-to": "#ffffff",
+                          } as React.CSSProperties}
+                        >
+                          {t(`items.${service.key}.title`)}
+                        </h3>
+                        <p className="font-sans text-sm lg:text-[15px] text-text-secondary leading-relaxed font-light flex-1">
+                          {t(`items.${service.key}.desc`)}
+                        </p>
+
+                        {/* Explore CTA */}
+                        <div className="mt-6 pt-5 border-t border-white/[0.05] flex items-center justify-between">
+                          <span className="font-mono text-xs tracking-[0.2em] text-text-disabled uppercase group-hover:text-white/60 transition-colors duration-500">
+                            {t("exploreCta")}
+                          </span>
+                          <div className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center group-hover:border-white/30 group-hover:bg-white/5 transition-all duration-500">
+                            <ArrowUpRight className="w-4 h-4 text-white/40 group-hover:text-white group-hover:rotate-0 -rotate-12 transition-all duration-500 rtl:rotate-[192deg] rtl:group-hover:rotate-180" />
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
-
-                    {/* SCROLLING TEXT CONTENT WITH ANIMATED ENTRANCE */}
-                    <div className="w-full lg:w-1/2 flex flex-col justify-center px-6 lg:px-12 py-16 lg:py-[30vh] z-10 lg:min-h-screen bg-bg-void/50 lg:bg-transparent">
-                       <motion.div
-                         initial={{ opacity: 0, y: 60, filter: "blur(12px)" }}
-                         whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                         viewport={{ once: false, margin: "-15% 0px -15% 0px" }}
-                         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                         className="flex flex-col space-y-8 max-w-2xl"
-                       >
-                          {/* Contextual Marker */}
-                          <div className="inline-flex items-center gap-4">
-                             <span className={`w-3 h-3 rounded-full bg-gradient-to-r ${service.color} shadow-[0_0_15px_rgba(255,255,255,0.3)]`} />
-                             <span className="font-mono text-sm tracking-[0.3em] text-text-disabled uppercase">
-                               {String(index + 1).padStart(2, '0')} — Segment
-                             </span>
-                          </div>
-
-                          <div className="space-y-6">
-                            <h2 className="font-orbitron font-bold text-4xl sm:text-5xl lg:text-[4rem] xl:text-[4.5rem] leading-[1.1] text-white">
-                               {t(`items.${service.key}.title`)}
-                            </h2>
-                            <p className="font-sans text-xl sm:text-2xl text-text-secondary leading-relaxed font-light">
-                               {t(`items.${service.key}.desc`)}
-                            </p>
-                          </div>
-
-                          {/* Action Button */}
-                          <div className="pt-8">
-                            <button className="group/btn relative flex items-center gap-6 pb-3 border-b border-white/20 hover:border-white/80 transition-all duration-500 w-max overflow-hidden">
-                               <span className="font-syne font-medium text-lg text-white/80 group-hover/btn:text-white transition-colors">View Dynamics</span>
-                               <span className="transform -rotate-45 group-hover/btn:rotate-0 group-hover/btn:translate-x-2 transition-all duration-500 rtl:rotate-[135deg] rtl:group-hover/btn:-rotate-180 rtl:group-hover/btn:-translate-x-2">
-                                 →
-                               </span>
-                            </button>
-                          </div>
-                       </motion.div>
-                    </div>
-
-                 </div>
-               )
+                  </Link>
+                </motion.div>
+              );
             })}
           </div>
+        </div>
 
       </div>
     </main>
