@@ -2,8 +2,30 @@
 
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { MeshTransmissionMaterial } from "@react-three/drei";
 import * as THREE from "three";
+
+// Created ONCE at module level — zero GC pressure, zero realloc
+const OUTER_GEO = new THREE.TorusKnotGeometry(2, 0.6, 100, 20);
+const INNER_GEO = new THREE.SphereGeometry(1.2, 24, 24);
+
+const OUTER_MAT = new THREE.MeshStandardMaterial({
+  color: new THREE.Color("#82b1ff"), // Modern Light Blue
+  metalness: 0.9,
+  roughness: 0.1,
+  envMapIntensity: 2.0,
+  transparent: true,
+  opacity: 0.8,
+  side: THREE.FrontSide,
+});
+
+const INNER_MAT = new THREE.MeshStandardMaterial({
+  color: new THREE.Color("#2962ff"), // Deep Blue
+  emissive: new THREE.Color("#00e5ff"), // Vibrant Cyan Glow
+  emissiveIntensity: 2.5,
+  wireframe: true,
+  transparent: true,
+  opacity: 0.5,
+});
 
 export default function MorphingSphere() {
   const outerRef = useRef<THREE.Mesh>(null!);
@@ -11,57 +33,24 @@ export default function MorphingSphere() {
   const groupRef = useRef<THREE.Group>(null!);
 
   useFrame((state, delta) => {
-    if (outerRef.current) {
-      outerRef.current.rotation.x += delta * 0.15;
-      outerRef.current.rotation.y += delta * 0.2;
-    }
-    if (innerRef.current) {
-      innerRef.current.rotation.x -= delta * 0.2;
-      innerRef.current.rotation.z += delta * 0.25;
-    }
-    if (groupRef.current) {
-      // Gentle floating animation
-      groupRef.current.position.y =
-        Math.sin(state.clock.elapsedTime * 0.5) * 0.3;
-      groupRef.current.rotation.y =
-        Math.sin(state.clock.elapsedTime * 0.3) * 0.1;
-    }
+    const d = Math.min(delta, 0.05); // cap — prevents lurch after tab restore
+    const t = state.clock.elapsedTime;
+
+    outerRef.current.rotation.x += d * 0.1;
+    outerRef.current.rotation.y += d * 0.15;
+
+    innerRef.current.rotation.x -= d * 0.15;
+    innerRef.current.rotation.z += d * 0.18;
+
+    // Float inlined — no <Float> wrapper = one fewer useFrame overhead
+    groupRef.current.position.y = Math.sin(t * 0.5) * 0.28;
+    groupRef.current.rotation.y = Math.sin(t * 0.3) * 0.08;
   });
 
   return (
-    <group ref={groupRef} scale={1.2}>
-      {/* 2025 Trend: Frosted Glass Torus Knot with Chromatic Aberration */}
-      <mesh ref={outerRef}>
-        {/* Optimized geometry vertices to fix frame drops */}
-        <torusKnotGeometry args={[2, 0.6, 128, 32]} />
-        <MeshTransmissionMaterial
-          backside
-          resolution={256} // Drastically improves performance by calculating optics at a smaller buffer
-          samples={3}
-          thickness={1.5}
-          chromaticAberration={0.12}
-          anisotropy={0.3}
-          distortion={0.6}
-          distortionScale={0.5}
-          temporalDistortion={0.1}
-          color="#ffffff"
-          clearcoat={1}
-          clearcoatRoughness={0.1}
-        />
-      </mesh>
-
-      {/* Inner Hovering Energy Core */}
-      <mesh ref={innerRef}>
-        <sphereGeometry args={[1.2, 32, 32]} />
-        <meshStandardMaterial
-          color="#a13085"
-          emissive="#ff00ff"
-          emissiveIntensity={2.5}
-          wireframe
-          transparent
-          opacity={0.6}
-        />
-      </mesh>
+    <group ref={groupRef} scale={1.15}>
+      <mesh ref={outerRef} geometry={OUTER_GEO} material={OUTER_MAT} />
+      <mesh ref={innerRef} geometry={INNER_GEO} material={INNER_MAT} />
     </group>
   );
 }
