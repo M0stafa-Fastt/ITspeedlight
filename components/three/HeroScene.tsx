@@ -25,7 +25,7 @@ function SceneContent() {
       <pointLight position={[-10, -10, -10]} intensity={2} color="#4d279b" />
       <pointLight position={[10, 10, 10]} intensity={2} color="#a13085" />
 
-      <group position={[0, 0, 0]} scale={0.9}>
+      <group position={[0, 0, 0]} scale={1.3}>
         <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
           <MorphingSphere />
         </Float>

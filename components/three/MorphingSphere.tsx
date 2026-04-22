@@ -32,10 +32,12 @@ export default function MorphingSphere() {
     <group ref={groupRef} scale={1.2}>
       {/* 2025 Trend: Frosted Glass Torus Knot with Chromatic Aberration */}
       <mesh ref={outerRef}>
-        <torusKnotGeometry args={[2, 0.6, 256, 64]} />
+        {/* Optimized geometry vertices to fix frame drops */}
+        <torusKnotGeometry args={[2, 0.6, 128, 32]} />
         <MeshTransmissionMaterial
           backside
-          samples={4}
+          resolution={256} // Drastically improves performance by calculating optics at a smaller buffer
+          samples={3}
           thickness={1.5}
           chromaticAberration={0.12}
           anisotropy={0.3}
