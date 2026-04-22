@@ -18,19 +18,19 @@ const CFG = {
   low: {
     dpr: [1, 1] as [number, number],
     fov: 55,
-    stars: 40,
+    stars: 150,
     antialias: false,
   },
   mid: {
     dpr: [1, 1.5] as [number, number],
     fov: 50,
-    stars: 80,
+    stars: 300,
     antialias: false,
   },
   high: {
     dpr: [1, 2] as [number, number],
     fov: 45,
-    stars: 140,
+    stars: 600,
     antialias: true,
   },
 }[TIER];
@@ -67,7 +67,7 @@ function SceneContent() {
       <Environment preset="city" />
 
       {/* Fog: starts far back so the orb stays crisp */}
-      <fog attach="fog" args={["#050510", 20, 40]} />
+      <fog attach="fog" args={["#000000", 20, 40]} />
     </>
   );
 }
@@ -87,7 +87,7 @@ export default function HeroScene() {
           alpha: false,
         }}
         onCreated={({ gl }) => {
-          gl.setClearColor(0x050510, 1);
+          gl.setClearColor(0x000000, 1);
           // Pause render loop when tab is hidden
           document.addEventListener("visibilitychange", () => {
             if (document.hidden) gl.setAnimationLoop(null);

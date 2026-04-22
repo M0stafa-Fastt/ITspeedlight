@@ -19,11 +19,12 @@ const makeStarMaterial = () =>
       void main() {
         vec4 mv = modelViewMatrix * vec4(position, 1.0);
 
-        // Smooth, gentle twinkling — no harsh blinking
-        float twinkle = sin(uTime * 0.8 + aPhase) * 0.3 + 0.7;
+        // Smooth, gentle twinkling
+        float twinkle = sin(uTime * 0.8 + aPhase) * 0.4 + 0.6;
         vAlpha = twinkle;
 
-        gl_PointSize = (aSize * 120.0) / -mv.z;
+        // Smaller size multiplier for distant star look
+        gl_PointSize = (aSize * 100.0) / -mv.z;
         gl_Position = projectionMatrix * mv;
       }
     `,
@@ -33,12 +34,13 @@ const makeStarMaterial = () =>
         float d = length(gl_PointCoord - vec2(0.5));
         if (d > 0.5) discard;
 
-        // Soft glow falloff — no hard edges
+        // Soft glow falloff
         float glow = smoothstep(0.5, 0.0, d);
-        float alpha = glow * glow * vAlpha * 0.6;
+        // Boost alpha significantly to make stars pop against the pure black background
+        float alpha = glow * vAlpha * 2.0;
 
-        // Warm white with a hint of blue
-        gl_FragColor = vec4(0.85, 0.9, 1.0, alpha);
+        // Crisp white with a hint of blue
+        gl_FragColor = vec4(0.9, 0.95, 1.0, alpha);
       }
     `,
     transparent: true,
@@ -62,8 +64,8 @@ export default function ParticleField({
     const phases = new Float32Array(count);
 
     for (let i = 0; i < count; i++) {
-      // Spread stars across a large sphere — not clustered near center
-      const r = 8 + Math.random() * 30;
+      // Spread stars across a wider volume
+      const r = 4 + Math.random() * 45;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
 
@@ -71,8 +73,8 @@ export default function ParticleField({
       pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
       pos[i * 3 + 2] = r * Math.cos(phi);
 
-      // Mix of small ambient dots and a few brighter stars
-      sizes[i] = 0.3 + Math.random() * 0.7;
+      // Fine, tiny stars
+      sizes[i] = 0.2 + Math.random() * 0.4;
       phases[i] = Math.random() * Math.PI * 2; // Random phase offset
     }
 

@@ -124,8 +124,8 @@ export default function HeroSection() {
         <HeroScene />
       </div>
 
-      {/* Cinematic Vignette — blends edges into deep navy void */}
-      <div className="absolute inset-0 z-[2] pointer-events-none bg-[radial-gradient(ellipse_at_center,transparent_25%,rgba(5,5,16,0.9)_100%)]" />
+      {/* Cinematic Vignette — blends edges into pure black void */}
+      <div className="absolute inset-0 z-[2] pointer-events-none bg-[radial-gradient(ellipse_at_center,transparent_25%,rgba(0,0,0,0.9)_100%)]" />
 
       {/* HUD Layer: Minimalist Framing Only */}
       <div className="hud-layer absolute inset-0 z-[5] pointer-events-none p-12">

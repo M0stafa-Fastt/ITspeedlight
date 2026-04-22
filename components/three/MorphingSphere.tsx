@@ -20,24 +20,6 @@ const KNOT_MAT = new THREE.MeshPhysicalMaterial({
   side: THREE.FrontSide,
 });
 
-// ─── Inner core: layered heartbeat orb ──────────────────────────────────────
-const CORE_GEO = new THREE.IcosahedronGeometry(0.5, 8);
-const CORE_MAT = new THREE.MeshStandardMaterial({
-  color: new THREE.Color("#4d8aff"),
-  emissive: new THREE.Color("#2979ff"),
-  emissiveIntensity: 2.0,
-  transparent: true,
-  opacity: 0.9,
-});
-
-// Wireframe shell around the core
-const SHELL_GEO = new THREE.IcosahedronGeometry(0.7, 2);
-const SHELL_MAT = new THREE.MeshBasicMaterial({
-  color: new THREE.Color("#00ccff"),
-  wireframe: true,
-  transparent: true,
-  opacity: 0.25,
-});
 
 // ─── Vertex morphing on the knot: gentle liquid breathing ───────────────────
 KNOT_MAT.onBeforeCompile = (shader) => {
@@ -71,8 +53,6 @@ function smoothPulse(t: number): number {
 
 export default function MorphingSphere() {
   const knotRef = useRef<THREE.Mesh>(null!);
-  const coreRef = useRef<THREE.Mesh>(null!);
-  const shellRef = useRef<THREE.Mesh>(null!);
   const lightRef = useRef<THREE.PointLight>(null!);
   const groupRef = useRef<THREE.Group>(null!);
 
@@ -92,10 +72,7 @@ export default function MorphingSphere() {
     const knotScale = 1.0 + pulse * 0.02; 
     knotRef.current.scale.setScalar(knotScale);
 
-    // Keep the inner core and light stable so it's not distracting
-    CORE_MAT.emissiveIntensity = 2.0;
-    CORE_MAT.opacity = 0.8;
-    SHELL_MAT.opacity = 0.15;
+    // Keep the light stable
     if (lightRef.current) {
       lightRef.current.intensity = 2;
     }
@@ -103,12 +80,6 @@ export default function MorphingSphere() {
     // Slow, elegant knot rotation
     knotRef.current.rotation.y = t * 0.1;
     knotRef.current.rotation.x = t * 0.06;
-
-    // Core + shell counter-rotate independently
-    coreRef.current.rotation.y = -t * 0.12;
-    coreRef.current.rotation.z = t * 0.08;
-    shellRef.current.rotation.x = t * 0.15;
-    shellRef.current.rotation.z = -t * 0.1;
 
     // Soft floating (no mouse)
     groupRef.current.position.y = Math.sin(t * 0.4) * 0.15;
@@ -118,12 +89,6 @@ export default function MorphingSphere() {
     <group ref={groupRef} scale={1.05}>
       {/* The "Water Shape" — frosted glass TorusKnot */}
       <mesh ref={knotRef} geometry={KNOT_GEO} material={KNOT_MAT} />
-
-      {/* Heartbeat core: solid glowing orb */}
-      <mesh ref={coreRef} geometry={CORE_GEO} material={CORE_MAT} />
-
-      {/* Wireframe shell: expands on each beat */}
-      <mesh ref={shellRef} geometry={SHELL_GEO} material={SHELL_MAT} />
 
       {/* Inner point light: pulses color through the knot gaps */}
       <pointLight ref={lightRef} color="#2979ff" intensity={1} distance={8} />
