@@ -6,7 +6,6 @@ import { getMessages } from "next-intl/server";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
-import CustomCursor from "@/components/ui/CustomCursor";
 
 const orbitron = Orbitron({
   subsets: ["latin"],
@@ -60,7 +59,6 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages}>
           <SmoothScrollProvider>
-            <CustomCursor />
             <Navigation />
             {children}
             <Footer />

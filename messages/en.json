@@ -71,48 +71,68 @@
     }
   },
   "About": {
-    "title": "Our Story",
-    "subtitle": "Elevating Brands through Premium Engineering",
+    "badge": "Capabilities Index",
+    "title": "Our Genesis",
+    "subtitle": "Elevating Brands through Premium Engineering and Unrivaled Aesthetic Vision.",
+    "introText": "ITspeedlight wasn't built to blend in. We were founded on the belief that most digital experiences are fundamentally broken, uninspired, and forgettable. We exist to fix that. Since our inception, we have curated a team of elite developers, creative strategists, and marketing architects fully obsessed with achieving perfection in every pixel and code string.",
     "missionTitle": "The Mission",
-    "missionText": "We believe digital presence should not just exist—it should dominate. Our mission is to transform ambitious brands into market leaders through relentless innovation and premium aesthetics.",
+    "missionText": "We believe digital presence should not just exist—it should completely dominate. Our mission is to transform ambitious, high-growth brands into untouchable market leaders. We accomplish this through relentless technological innovation, data-driven revenue engineering, and the execution of premium, breathtaking aesthetics that command authority.",
     "visionTitle": "The Vision",
-    "visionText": "To redefine global standards in web and marketing technology, turning ITspeedlight into the ultimate gateway for luxury brand scaling.",
+    "visionText": "To completely redefine the global standards of web technology and digital marketing over the next decade. We envision ITspeedlight not merely as an agency, but as the ultimate digital gateway for luxury and high-performance brand scaling across the globe.",
     "whyChooseUs": "Why Partner With Us",
     "why1": "Uncompromised Quality",
-    "why1Text": "We do not use templates. We build bespoke digital masterpieces.",
+    "why1Text": "We reject templates and off-the-shelf solutions. Every project we touch is a bespoke digital masterpiece engineered strictly from the ground up to match your brand's unique prestige.",
     "why2": "Conversion Engineered",
-    "why2Text": "Every interaction is carefully calculated to capture leads and multiply ROI.",
-    "why3": "Next-Gen Tech",
-    "why3Text": "Utilizing advanced framerops, server-components, and 3D web technologies.",
-    "cta": "Ready to scale your business?"
+    "why2Text": "Beauty without performance is meaningless. Every animation, interaction, and structural element is meticulously calculated by our scientists to capture high-value leads and multiply ROI.",
+    "why3": "Next-Gen Technology",
+    "why3Text": "We operate exclusively on the bleeding edge. Utilizing advanced Next.js servers, 3D web technologies, and cinematic Framer Motion physics to build ultra-fast, future-proof platforms.",
+    "ctaTitle": "Ready to Ascend?",
+    "ctaSubtitle": "Your market is waiting for a leader. Step into the void and let us build your digital empire.",
+    "ctaButton": "Initialize Partnership"
   },
   "Services": {
     "title": "Elite Services",
     "subtitle": "Everything you need to dominate the digital landscape.",
     "items": {
-      "web": {
-        "title": "Enterprise Web Development",
-        "desc": "High-performance, ultra-secure scalable platforms built with cutting edge technologies."
+      "itConsulting": {
+        "title": "IT Consulting",
+        "desc": "Expert guidance to align your technological infrastructure with your business goals."
       },
-      "branding": {
-        "title": "Luxury Branding",
-        "desc": "Crafting unforgettable visual identities that command respect and loyalty."
+      "lightCurrent": {
+        "title": "Light Current Systems",
+        "desc": "Advanced low-voltage solutions for smart buildings, communications, and safety."
       },
-      "social": {
-        "title": "Social Media Domination",
-        "desc": "Data-driven organic and viral strategies to capture market attention."
+      "security": {
+        "title": "Security Solutions",
+        "desc": "Comprehensive digital and physical security integrations to protect your critical assets."
+      },
+      "cloud": {
+        "title": "Cloud Solutions",
+        "desc": "Scalable, resilient cloud architecture and migration services for maximum uptime."
+      },
+      "network": {
+        "title": "Network Consulting",
+        "desc": "Robust network design and optimization to guarantee seamless connectivity."
       },
       "seo": {
-        "title": "Technical SEO",
+        "title": "SEO Services",
         "desc": "Deeply integrated organic search engineering to monopolize Google rankings."
       },
-      "marketing": {
-        "title": "Performance Marketing",
-        "desc": "Precision ad-buying across Meta, Google, and TikTok to scale revenue instantly."
+      "email": {
+        "title": "Email Marketing",
+        "desc": "High-conversion automated email campaigns that nurture leads and drive sales."
       },
-      "growth": {
-        "title": "Business Growth Strategy",
-        "desc": "High-level consulting to optimize your entire funnel and maximize LTV."
+      "social": {
+        "title": "Social Media Marketing",
+        "desc": "Data-driven organic and viral strategies to capture market attention."
+      },
+      "web": {
+        "title": "Web Development",
+        "desc": "High-performance, ultra-secure scalable platforms built with cutting-edge technologies."
+      },
+      "career": {
+        "title": "Career",
+        "desc": "Join our team of visionary engineers and marketers building the future."
       }
     }
   },
@@ -148,9 +168,13 @@
     },
     "info": {
       "addressTitle": "Headquarters",
-      "address": "Cairo, Egypt",
-      "emailTitle": "Direct Email",
-      "phoneTitle": "Global Hotline"
+      "address": "Building 560, Site 31, Capital Gardens, Cairo, Egypt",
+      "emailTitle": "Electronic Communications",
+      "email1": "info@itspeedlight.com",
+      "email2": "sales@itspeedlight.com",
+      "phoneTitle": "Direct Hotlines",
+      "phone1": "+201116570809",
+      "phone2": "+201113465271"
     }
   },
   "Footer": {
